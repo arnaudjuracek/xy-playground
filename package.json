@@ -1,0 +1,27 @@
+{
+  "name": "xy-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnaudjuracek/xy-playground.git"
+  },
+  "keywords": [
+    "plotter",
+    "playground",
+    "experiments"
+  ],
+  "author": "Arnaud Juracek <arnaud.juracek@gmail.com> (http://arnaudjuracek.fr)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arnaudjuracek/xy-playground/issues"
+  },
+  "homepage": "https://github.com/arnaudjuracek/xy-playground#readme",
+  "dependencies": {
+    "xy-plotter": "github:arnaudjuracek/xy"
+  }
+}

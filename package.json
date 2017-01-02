@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/arnaudjuracek/xy-playground#readme",
   "dependencies": {
+    "missing-math": "github:arnaudjuracek/missing-math",
     "xy-plotter": "github:arnaudjuracek/xy"
   }
 }

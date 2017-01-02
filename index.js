@@ -1,21 +1,34 @@
-const path    = require('path');
-const plotter = require('xy-plotter')();
+var mm      = require('missing-math');
+var path    = require('path');
+var plotter = require('xy-plotter')();
 
-const job = plotter.Job('sq2circle');
+// -------------------------------------------------------------------------
 
-const maxRadius = plotter.height / 2;
-const center = {x: plotter.width / 2, y: plotter.height / 2};
+var job = plotter.Job('lissajous');
 
-for (let radius = 1, i = 4; radius < maxRadius; radius += 0.1, i -= .00003) {
-  let x = center.x + Math.cos(radius * i) * radius;
-  let y = center.y + Math.sin(radius * i) * radius;
+var cx = plotter.width / 2;
+var cy = plotter.height / 2;
 
-  let constrain = radius;
-  x = Math.max(center.x - constrain, Math.min(x, center.x + constrain));
-  y = Math.max(center.y - constrain, Math.min(y, center.y + constrain));
+var radius = 100;
+var resolution = 10000;
+
+var freqX = 65.41 //mm.random(0, 100);
+var freqY = 64.95 //mm.random(0, 100);
+var phi   = 46.95 //mm.random(0, 360);
+
+console.log(freqX.toFixed(2), freqY.toFixed(2), phi.toFixed(2));
+
+for (var i = 0; i <= resolution ; i++) {
+  var theta = mm.map(i, 0, resolution, 0, Math.PI * 2);
+  var x = cx + Math.sin(theta * freqX + mm.radians(phi)) * radius;
+  var y = cy + Math.sin(theta * freqY) * radius;
+
   job.move(x, y).pen_down();
 }
 
+
+// -------------------------------------------------------------------------
+
 console.log(plotter.Stats(job).getDuration().estimation.formatted);
-// plotter.File().export(job, path.join(__dirname, 'preview.png'));
+plotter.File().export(job, path.join(__dirname, 'preview.png'));
 plotter.Server('xy-server.local').queue(job, () => console.log('queued'));

@@ -2,7 +2,8 @@ const playground = require('./lib/playground')
 
 playground({
   title: 'crop-tex-5',
-  server: 'xy-server.local'
+  server: 'xy-server.local',
+  optimize: false
 }, ({ plotter, job }) => {
   const { radians } = require('missing-math')
   const clip = require('lineclip')

@@ -1,7 +1,7 @@
 const playground = require('./lib/playground')
 
 playground({
-  title: 'crop-tex-3',
+  title: 'crop-tex-4',
   server: 'xy-server.local'
 }, ({ plotter, job }) => {
   const { radians } = require('missing-math')
@@ -20,9 +20,9 @@ playground({
   ]
 
   for (let i = -1; i < 99; i += 1.5) {
-    const a = [aabb[0] + i, aabb[1]]
-    const b = slope(a, 90 - i, 500)
-    for (let j = 0; j < 5; j += 1.5) {
+    const a = [aabb[0], aabb[1]]
+    const b = slope(a, i, 500)
+    for (let j = 0; j < 3; j += 2) {
       const lines = clip([[a[0] + j, a[1]], [b[0] - j, b[1]]], aabb)
       lines.forEach(line => job.line(...line[0], ...line[1]))
     }

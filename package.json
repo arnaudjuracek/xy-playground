@@ -23,7 +23,15 @@
   },
   "homepage": "https://github.com/arnaudjuracek/xy-playground#readme",
   "dependencies": {
+    "lineclip": "^1.1.5",
     "missing-math": "github:arnaudjuracek/missing-math",
     "xy-plotter": "github:chevalvert/xy"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0"
   }
 }

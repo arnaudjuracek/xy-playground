@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,6 @@
   "homepage": "https://github.com/arnaudjuracek/xy-playground#readme",
   "dependencies": {
     "missing-math": "github:arnaudjuracek/missing-math",
-    "xy-plotter": "github:arnaudjuracek/xy"
+    "xy-plotter": "github:chevalvert/xy"
   }
 }

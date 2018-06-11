@@ -1,7 +1,7 @@
 const playground = require('./lib/playground')
 
 playground({
-  title: 'crop-tex-7',
+  title: 'crop-tex-8',
   server: 'xy-server.local',
   optimize: false,
   useTurtle: false
@@ -21,16 +21,9 @@ playground({
     plotter.height / 2 + 50
   ]
 
-  for (let i = -100; i < 100; i += 2) {
+  for (let i = -100; i < 100; i++) {
     const a = [aabb[0] + i, aabb[1]]
-    const b = slope(a, 45 + normalize(i, -100, 100), 200)
-    const lines = clip([[a[0], a[1]], [b[0], b[1]]], aabb)
-    lines.forEach(line => job.line(...line[0], ...line[1]))
-  }
-
-  for (let i = -100; i < 100; i += 2) {
-    const a = [aabb[0] + i, aabb[1]]
-    const b = slope(a, 45 - normalize(i, 0, 100), 200)
+    const b = slope(a, 90 - Math.tan(normalize(i, -100, 100)) ** 2, 200)
     const lines = clip([[a[0], a[1]], [b[0], b[1]]], aabb)
     lines.forEach(line => job.line(...line[0], ...line[1]))
   }

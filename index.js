@@ -1,18 +1,12 @@
 const playground = require('./lib/playground')
 
 playground({
-  title: 'crop-tex-8',
+  title: 'perlin-1',
   server: 'xy-server.local',
-  optimize: false,
+  optimize: true,
   useTurtle: false
 }, ({ plotter, job, turtle }) => {
-  const { normalize, radians } = require('missing-math')
-  const clip = require('lineclip')
-
-  const slope = (from, deg, len) => [
-    from[0] + Math.cos(radians(deg)) * len,
-    from[1] + Math.sin(radians(deg)) * len
-  ]
+  const { noise, radians } = require('missing-math')
 
   const aabb = [
     plotter.width / 2 - 50,
@@ -21,10 +15,30 @@ playground({
     plotter.height / 2 + 50
   ]
 
-  for (let i = -100; i < 100; i++) {
-    const a = [aabb[0] + i, aabb[1]]
-    const b = slope(a, 90 - Math.tan(normalize(i, -100, 100)) ** 2, 200)
-    const lines = clip([[a[0], a[1]], [b[0], b[1]]], aabb)
-    lines.forEach(line => job.line(...line[0], ...line[1]))
+  const slope = (from, deg, len) => [
+    from[0] + Math.cos(radians(deg)) * len,
+    from[1] + Math.sin(radians(deg)) * len
+  ]
+
+  const freq = [0.03, 0.25]
+  const amp = 10
+  const steps = [1, 1.5]
+
+  let xoff = 0
+  let yoff = 0
+
+  for (let x = aabb[0]; x <= aabb[2]; x += steps[0]) {
+    xoff += freq[0]
+    yoff = 0
+    for (let y = aabb[1]; y <= aabb[3]; y += steps[1]) {
+      const n = noise(xoff, yoff)
+      yoff += freq[1]
+
+      const point = slope([x, y], n * 90, n * amp)
+      job.move(...point)
+      job.pen_down()
+    }
+    // NOTE: this may also be cool without lifting the pen
+    job.pen_up()
   }
 })

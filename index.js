@@ -1,7 +1,7 @@
 const playground = require('./lib/playground')
 
 playground({
-  title: 'perlin-1',
+  title: 'perlin-2',
   server: 'xy-server.local',
   optimize: true,
   useTurtle: false
@@ -20,9 +20,9 @@ playground({
     from[1] + Math.sin(radians(deg)) * len
   ]
 
-  const freq = [0.03, 0.25]
-  const amp = 10
-  const steps = [1, 1.5]
+  const freq = [0.03, 0.3]
+  const amp = 20
+  const steps = [1, 10]
 
   let xoff = 0
   let yoff = 0
